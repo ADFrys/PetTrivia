@@ -1,6 +1,7 @@
 body {
 	background-image: url(../images/foggy_birds_@2X.png);
 	text-align: center;
+	font-family: Lucida Sans Unicode;
 }
 
 form {
@@ -12,4 +13,5 @@ input[type=submit] {
 	font-size: 30px;
 	background-color: pink;
 	border: 3px solid black;
+	font-family: Lucida Sans Unicode;
 }

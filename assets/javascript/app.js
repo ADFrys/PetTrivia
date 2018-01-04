@@ -4,24 +4,25 @@ var countDownNumber = 120;
 
 $(document).ready(function() {
   $(".remaining-time").append(" " + countDownNumber + " ");
-  setInterval(oneTwentyS, 120000);
+  setInterval(oneTwentyS, 1000);
 
 
 // countdown remaining seconds using a function
 // load new page that displays correct answers, wrong answers and unanswered questions
 function oneTwentyS() {
   countDownNumber--;
-  $(".remaining-time").append(" " + countDownNumber + " ");
+  $(".remaining-time").text(" " + countDownNumber + " ");
 }
 
+//this does not work right now. Need to fix.
 function stop() {
 	clearInterval(oneTwentyS);
 	window.location("../../closing.html");
 };
 
-// if countDownNumber == 0 {
-// 	stop();
-// }
+if (countDownNumber === 0) {
+	stop();
+}
 
 // //
 

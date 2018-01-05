@@ -1,45 +1,49 @@
+var CorrectAnswers = {
+  q1: "7x",
+  q2: "10v",
+  q3: "100v",
+  q4: "red",
+  q5: "400x",
+  q6: "longTail",
+  q7: "9s",
+  q8: "43y",
+};
 
-// when page loads, start timer for 120 seconds (setTimeout or setInterval)
+var numberCorrect = 0;
+var numberIncorrect = 8;
+var unansweredQ = 8;
 var countDownNumber = 120;
+var time;
 
-$(document).ready(function() {
-  $(".remaining-time").append(" " + countDownNumber + " ");
-  setInterval(oneTwentyS, 1000);
+$(".number-correct").append(" " + numberCorrect + " ");
+$(".number-incorrect").append(" " + numberIncorrect + " ");
+$(".Unanswered").append(" " + unansweredQ + " ");
 
+function stop() {
+  clearInterval(time);
+  $(".remaining-time").text(" " + countDownNumber + " ");
+  window.location.href = 'closing.html'
+}
 
-// countdown remaining seconds using a function
-// load new page that displays correct answers, wrong answers and unanswered questions
 function oneTwentyS() {
   countDownNumber--;
   $(".remaining-time").text(" " + countDownNumber + " ");
-}
-
-//this does not work right now. Need to fix.
-function stop() {
-	clearInterval(oneTwentyS);
-	window.location("../../closing.html");
-};
-
-if (countDownNumber === 0) {
+  if (countDownNumber == 0) {
 	stop();
+  }
 }
 
-// //
+$(document).ready(function() {
+  $(".remaining-time").append(" " + countDownNumber + " ");
+  time = setInterval(oneTwentyS, 1000);
+});
 
-// // create object that stores correct answers
-// var CorrectAnswers = {
-// 	q1: "7x",
-// 	q2: "10v",
-// 	q3: "100v",
-// 	q4: "red",
-// 	q5: "400x",
-// 	q6: "longTail",
-// 	q7: "9s",
-// 	q8: "43y",
-// };
+// var answerQ1 = $('input[name=q1a]:checked').val();
+
+var answerQ1 = $('input[name=q1]').val();
+console.log(answerQ1)
+
+
 
 // if user picks correct answer, count towards correct answer
 // if user picks incorrect answer, count towards incorrect answer
-
-});
-

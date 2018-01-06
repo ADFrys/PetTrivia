@@ -1,4 +1,6 @@
-var CorrectAnswers = {
+$(document).ready(function() {
+  
+  var correctAnswers = {
   q1: "7x",
   q2: "10v",
   q3: "100v",
@@ -7,43 +9,61 @@ var CorrectAnswers = {
   q6: "longTail",
   q7: "9s",
   q8: "43y",
-};
+  };
 
-var numberCorrect = 0;
-var numberIncorrect = 8;
-var unansweredQ = 8;
-var countDownNumber = 120;
-var time;
+  var countDownNumber = 5;
+  var time;
+  var answerQ1;
+  var numberCorrect = 0;
+  var numberIncorrect = 8;
+  var unansweredQ = 8;
 
-$(".number-correct").append(" " + numberCorrect + " ");
-$(".number-incorrect").append(" " + numberIncorrect + " ");
-$(".Unanswered").append(" " + unansweredQ + " ");
-
-function stop() {
-  clearInterval(time);
-  $(".remaining-time").text(" " + countDownNumber + " ");
-  window.location.href = 'closing.html'
-}
-
-function oneTwentyS() {
-  countDownNumber--;
-  $(".remaining-time").text(" " + countDownNumber + " ");
-  if (countDownNumber == 0) {
-	stop();
+  function stop() {
+	clearInterval(time);
+	$(".remaining-time").text(" " + countDownNumber + " ");
+	$(".body").empty();
+	$(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");
+	$(".body").append("<p>" + "Number Incorrect: " + numberIncorrect + "</p>");
+	$(".body").append("Unanswered questions: " + unansweredQ + " ");
+	console.log(numberCorrect + "check");
   }
-}
 
-$(document).ready(function() {
+  function oneTwentyS() {
+    countDownNumber--;
+    $(".remaining-time").text(" " + countDownNumber + " ");
+    if (countDownNumber == 0) {
+    stop();
+    }
+  }
+
   $(".remaining-time").append(" " + countDownNumber + " ");
   time = setInterval(oneTwentyS, 1000);
+
+  function check(answer, name) {
+    if (answer == correctAnswers[name]) {
+    alert("hello");
+    numberCorrect++;
+    numberIncorrect--;
+    unansweredQ--;
+    console.log(numberCorrect);
+    }
+  }
+
+  $("input[type=radio][name=q1]").on("click", function() {
+    answerQ1 = $("input[type=radio][name=q1]:checked").val();
+    console.log(answerQ1);
+    check(answerQ1, "q1");
+  });
+
+  $("form").submit(function quizDone() {
+    event.preventDefault();
+    $(".body").empty();
+    $(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");
+    $(".body").append("<p>" + "Number Incorrect: " + numberIncorrect + "</p>");
+    $(".body").append("Unanswered questions: " + unansweredQ + " ");
+    console.log(numberCorrect + "check");
+  });
 });
 
-// var answerQ1 = $('input[name=q1a]:checked').val();
+// userAnswer = (correctAnswers[i].$('input[name=q'+i+']:checked')||{}).value;
 
-var answerQ1 = $('input[name=q1]').val();
-console.log(answerQ1)
-
-
-
-// if user picks correct answer, count towards correct answer
-// if user picks incorrect answer, count towards incorrect answer

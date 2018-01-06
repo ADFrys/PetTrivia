@@ -15,8 +15,21 @@ $(document).ready(function() {
   var time;
   var answerQ1;
   var numberCorrect = 0;
-  var numberIncorrect = 8;
+  var numberIncorrect = 0;
   var unansweredQ = 8;
+
+  function check(answer, name) {
+    if (answer == correctAnswers[name]) {
+      alert("hello");
+      numberCorrect++;
+      unansweredQ--;
+      console.log(numberCorrect);
+    }
+    else if (answer !== correctAnswers[name]) {
+      unansweredQ--;
+      numberIncorrect++;
+    } 
+  }
 
   function stop() {
 	clearInterval(time);
@@ -38,16 +51,6 @@ $(document).ready(function() {
 
   $(".remaining-time").append(" " + countDownNumber + " ");
   time = setInterval(oneTwentyS, 1000);
-
-  function check(answer, name) {
-    if (answer == correctAnswers[name]) {
-    alert("hello");
-    numberCorrect++;
-    numberIncorrect--;
-    unansweredQ--;
-    console.log(numberCorrect);
-    }
-  }
 
   $("input[type=radio][name=q1]").on("click", function() {
     answerQ1 = $("input[type=radio][name=q1]:checked").val();

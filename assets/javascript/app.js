@@ -35,15 +35,23 @@ var userAnswer = {
   var unansweredQ = 8;
 
 // userAnswer = $('input[name=q' + i +']:checked") || {}).value;
-
-  $("input[type=radio]").on("change", function() {
-
-    var answerQ = $("input[type=radio][name^=q]:checked");
-    userAnswer[answerQ.attr("name")] = answerQ.val();
-    console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
-    console.log("answerQname " + answerQ.attr("name"));
-    console.log("answerQval " + answerQ.val());
+     $("input[type=radio]").on("change", function() {
+      var answerQ = $("input[type=radio][name^=q]:checked");
+      $("input[type=radio]").each(function (){
+        userAnswer[answerQ.attr("name")] = answerQ.val();
+      })
+      console.log("answerQval " + answerQ.val());
+      console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
+      console.log("answerQname " + answerQ.attr("name"));
   });
+
+  // $("input[type=radio]").on("change", function() {
+  //     var answerQ = $("input[type=radio][name^=q]:checked");
+  //     userAnswer[answerQ.attr("name")] = answerQ.val();
+  //     console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
+  //     console.log("answerQname " + answerQ.attr("name"));
+  //     console.log("answerQval " + answerQ.val());
+  // });
 
 
   function check() {

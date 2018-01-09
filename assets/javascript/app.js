@@ -23,7 +23,7 @@ var userAnswer = {
 };
 
   var newUserAnswer = {};
-  var countDownNumber = 5;
+  var countDownNumber = 120;
   var time;
   var question;
   var numberCorrect = 0;

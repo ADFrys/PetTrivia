@@ -23,7 +23,7 @@ var userAnswer = {
 };
 
   var newUserAnswer = {};
-  var countDownNumber = 120;
+  var countDownNumber = 5;
   var time;
   var question;
   var numberCorrect = 0;
@@ -68,6 +68,7 @@ var userAnswer = {
 
   function stop() {
 	clearInterval(time);
+  getVals();
   check();
 	$(".remaining-time").text(" " + countDownNumber + " ");
 	$(".body").empty();

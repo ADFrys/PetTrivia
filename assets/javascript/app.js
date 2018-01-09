@@ -15,32 +15,59 @@ $(document).ready(function() {
 // chosen[name] = question
 // answers[q1] = val
 
+var userAnswer = { 
+  q1: "",
+  q2: "",
+  q3: "",
+  q4: "",
+  q5: "",
+  q6: "",
+  q7: "",
+  q8: "",
+};
+
   var countDownNumber = 120;
   var time;
   var question;
-  var answerQ;
+  // var answerQ;
   var numberCorrect = 0;
   var numberIncorrect = 0;
   var unansweredQ = 8;
 
-  function check(answer, name) {
-    for (var i=0; i<9; i++) {
-    question = "q"+[i];
-  }
-    if (answer == correctAnswers[name]) {
+// userAnswer = $('input[name=q' + i +']:checked") || {}).value;
+
+  $("input[type=radio]").on("change", function() {
+
+    var answerQ = $("input[type=radio][name^=q]:checked");
+    userAnswer[answerQ.attr("name")] = answerQ.val();
+    console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
+    console.log("answerQname " + answerQ.attr("name"));
+    console.log("answerQval " + answerQ.val());
+  });
+
+
+  function check() {
+    for (var i=0; i<8; i++) { 
+     question = "q" + i;
+
+
+  // userAnswer = (correctAnswers[i].$('input[name=q'+i+']:checked')||{}).value;
+
+    if (userAnswer[question] == correctAnswers[question]) {
       numberCorrect++;
       unansweredQ--;
     }
-    else if (answer !== correctAnswers[name]) {
+    else if (userAnswer[question] !== correctAnswers[question]) {
       unansweredQ--;
       numberIncorrect++;
-      console.log("name correcta" + correctAnswers[name]);
-    } 
+      console.log("name correcta" + correctAnswers[question] + " " + question);
+   } 
   }
+}
 
   function stop() {
 	clearInterval(time);
-  check(answerQ, question);
+  check();
 	$(".remaining-time").text(" " + countDownNumber + " ");
 	$(".body").empty();
 	$(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");
@@ -59,17 +86,9 @@ $(document).ready(function() {
   $(".remaining-time").append(" " + countDownNumber + " ");
   time = setInterval(oneTwentyS, 1000);
 
-//create as an object
-  $("input[type=radio]").on("click", function() {
-    answerQ = $("input[type=radio]:checked").val();
-    console.log("answerQ " + answerQ);
-    console.log(question + "question")
-  });
-
-
   $("form").submit(function quizDone() {
     event.preventDefault();
-    check(answerQ, question);
+    check();
     $(".body").empty();
     $(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");
     $(".body").append("<p>" + "Number Incorrect: " + numberIncorrect + "</p>");

@@ -10,10 +10,6 @@ $(document).ready(function() {
   q7: "9s",
   q8: "43y",
   };
-// create an empty object 
-// answer chosen with same notation (for each question id)
-// chosen[name] = question
-// answers[q1] = val
 
 var userAnswer = { 
   q1: "",
@@ -26,46 +22,43 @@ var userAnswer = {
   q8: "",
 };
 
+  var newUserAnswer = {};
   var countDownNumber = 120;
   var time;
   var question;
-  // var answerQ;
   var numberCorrect = 0;
   var numberIncorrect = 0;
   var unansweredQ = 8;
 
-// userAnswer = $('input[name=q' + i +']:checked") || {}).value;
-     $("input[type=radio]").on("change", function() {
-      var answerQ = $("input[type=radio][name^=q]:checked");
-      $("input[type=radio]").each(function (){
-        userAnswer[answerQ.attr("name")] = answerQ.val();
-      })
-      console.log("answerQval " + answerQ.val());
-      console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
-      console.log("answerQname " + answerQ.attr("name"));
-  });
+  var getVals = function() {
+  	$("input[type=radio]").each(function() {
+  		var $this = $(this),
+  		name = $this.attr('name'),
+  		val = $this.attr('value');
+  		if($(this).prop('checked')) {
+  		  newUserAnswer[name] = val;
+        console.log("name " + name);
+        console.log(" val " + val);
+        console.log("new user answer " + newUserAnswer[name]);
+  		}
 
-  // $("input[type=radio]").on("change", function() {
-  //     var answerQ = $("input[type=radio][name^=q]:checked");
-  //     userAnswer[answerQ.attr("name")] = answerQ.val();
-  //     console.log("userAnswer " + userAnswer[answerQ.attr("name")]);
-  //     console.log("answerQname " + answerQ.attr("name"));
-  //     console.log("answerQval " + answerQ.val());
-  // });
-
+  	});
+  }
 
   function check() {
-    for (var i=0; i<8; i++) { 
+    for (var i=1; i<9; i++) { 
      question = "q" + i;
+     console.log("newUserAnswer" + newUserAnswer[question]);
 
-
-  // userAnswer = (correctAnswers[i].$('input[name=q'+i+']:checked')||{}).value;
-
-    if (userAnswer[question] == correctAnswers[question]) {
+    if (newUserAnswer[question] == correctAnswers[question]) {
       numberCorrect++;
       unansweredQ--;
     }
-    else if (userAnswer[question] !== correctAnswers[question]) {
+
+    else if (newUserAnswer[question] === undefined) {
+      console.log("You missed a question");
+   }
+    else if (newUserAnswer[question] !== correctAnswers[question]) {
       unansweredQ--;
       numberIncorrect++;
       console.log("name correcta" + correctAnswers[question] + " " + question);
@@ -96,6 +89,7 @@ var userAnswer = {
 
   $("form").submit(function quizDone() {
     event.preventDefault();
+    getVals();
     check();
     $(".body").empty();
     $(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");

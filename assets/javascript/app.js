@@ -24,13 +24,13 @@ $(document).ready(function() {
   	  var $this = $(this),
   	  name = $this.attr('name'),
   	  val = $this.attr('value');
-  	    if($(this).prop('checked')) {
-  		    newUserAnswer[name] = val;
-          console.log("name " + name);
-          console.log(" val " + val);
-          console.log("new user answer " + newUserAnswer[name]);
-  		  }
-   	});
+  	  if($(this).prop('checked')) {
+  		  newUserAnswer[name] = val;
+        console.log("name " + name);
+        console.log(" val " + val);
+        console.log("new user answer " + newUserAnswer[name]);
+  	  }
+    });
   }
 
   function check() {

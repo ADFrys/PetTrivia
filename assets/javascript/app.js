@@ -20,17 +20,17 @@ $(document).ready(function() {
   var unansweredQ = 8;
 
   var getVals = function() {
-  	$("input[type=radio]").each(function() {
-  		var $this = $(this),
-  		name = $this.attr('name'),
-  		val = $this.attr('value');
-  		if($(this).prop('checked')) {
-  		  newUserAnswer[name] = val;
-        console.log("name " + name);
-        console.log(" val " + val);
-        console.log("new user answer " + newUserAnswer[name]);
-  		}
-  	});
+    $("input[type=radio]").each(function() {
+  	  var $this = $(this),
+  	  name = $this.attr('name'),
+  	  val = $this.attr('value');
+  	    if($(this).prop('checked')) {
+  		    newUserAnswer[name] = val;
+          console.log("name " + name);
+          console.log(" val " + val);
+          console.log("new user answer " + newUserAnswer[name]);
+  		  }
+   	});
   }
 
   function check() {

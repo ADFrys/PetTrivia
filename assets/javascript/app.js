@@ -21,7 +21,6 @@ $(document).ready(function() {
 
   var getVals = function() {
     $("input[type=radio]").each(function() {
-  	  // var $this = $(this),
   	  name = $(this).attr('name'),
   	  val = $(this).attr('value');
   	  if($(this).prop('checked')) {

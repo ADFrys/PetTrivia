@@ -21,11 +21,11 @@ $(document).ready(function() {
 
   var getVals = function() {
     $("input[type=radio]").each(function() {
-  	  var $this = $(this),
-  	  name = $this.attr('name'),
-  	  val = $this.attr('value');
+  	  // var $this = $(this),
+  	  name = $(this).attr('name'),
+  	  val = $(this).attr('value');
   	  if($(this).prop('checked')) {
-  		  newUserAnswer[name] = val;
+  	    newUserAnswer[name] = val;
         console.log("name " + name);
         console.log(" val " + val);
         console.log("new user answer " + newUserAnswer[name]);

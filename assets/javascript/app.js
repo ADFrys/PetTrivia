@@ -52,7 +52,7 @@ $(document).ready(function() {
   }
 
   function stop() {
-	  clearInterval(time);
+	clearInterval(time);
     getVals();
     check();
 	  $(".remaining-time").text(" " + countDownNumber + " ");
@@ -75,11 +75,6 @@ $(document).ready(function() {
 
   $("form").submit(function quizDone() {
     event.preventDefault();
-    getVals();
-    check();
-    $(".body").empty();
-    $(".body").html("<h1>Thank you for playing pet trivia!</h1>" + "<p>" + "Number Correct: " + numberCorrect + "</p>");
-    $(".body").append("<p>" + "Number Incorrect: " + numberIncorrect + "</p>");
-    $(".body").append("Unanswered questions: " + unansweredQ + " ");
+    stop();
   });
 });
